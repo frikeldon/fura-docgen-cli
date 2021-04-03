@@ -4,6 +4,10 @@
   "bin": {
     "fura-docgen": "bin/fura-docgen.js"
   },
+  "dependencies": {
+    "fast-glob": "^3.2.5",
+    "vue-docgen-api": "^4.36.1"
+  },
   "devDependencies": {
     "eslint": "^7.23.0",
     "eslint-config-standard": "^16.0.2",
