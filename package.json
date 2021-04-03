@@ -1,5 +1,9 @@
 {
   "name": "fura-docgen-cli",
+  "main": "src/docgen.js",
+  "bin": {
+    "fura-docgen": "bin/fura-docgen.js"
+  },
   "devDependencies": {
     "eslint": "^7.23.0",
     "eslint-config-standard": "^16.0.2",
