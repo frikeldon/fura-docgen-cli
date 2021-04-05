@@ -22,14 +22,15 @@ async function readComponents ({ globComponents, cwd }) {
 }
 
 function createComponentIndex (files, components, { outIndex, outComponents }) {
+  const indexDir = path.dirname(outIndex)
+  const componentsDir = path.relative(indexDir, outComponents)
+  const componentsRelative = componentsDir ? componentsDir + '/' : ''
   const names = components.map(({ basename, info }) => ({
     basename,
     kebab: info.displayName,
     pascal: kebabToPascal(info.displayName)
   }))
-  const indexDir = path.dirname(outIndex)
-  const componentsDir = path.relative(indexDir, outComponents)
-  const componentsRelative = componentsDir ? componentsDir + '/' : ''
+    .sort((a, b) => a.pascal.localeCompare(b.pascal))
   files.push({
     path: outIndex,
     data: [
