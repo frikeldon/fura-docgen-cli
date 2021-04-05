@@ -15,14 +15,14 @@ module.exports = function templateMethods (methods) {
       method.returns?.type?.name ? `<div>Returns: <span>${method.returns?.type?.name}</span></div>` : '',
       '</td>',
       '<td class="parameters">',
-      ...method.params.flatMap(param => [
+      ...method.params?.flatMap(param => [
         '<div>',
         `<code class="name">${param.name}</code>:`,
         `<span class="type">${param.type?.name}</span>`,
         '-',
         `<span>${param.description}</span>`,
         '</div>'
-      ]),
+      ]) ?? '',
       '</td>',
       '</tr>'
     ]),
