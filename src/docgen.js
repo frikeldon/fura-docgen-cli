@@ -2,7 +2,7 @@ const path = require('path')
 const fs = require('fs').promises
 const fg = require('fast-glob')
 const { parse } = require('vue-docgen-api')
-const { kebabToPascal } = require('./case.js')
+const { pascalToKebab } = require('./case.js')
 const templateComponent = require('./template-component.js')
 
 async function readComponents ({ globComponents, cwd }) {
@@ -27,8 +27,8 @@ function createComponentIndex (files, components, { outIndex, outComponents }) {
   const componentsRelative = componentsDir ? componentsDir + '/' : ''
   const names = components.map(({ basename, info }) => ({
     basename,
-    kebab: info.displayName,
-    pascal: kebabToPascal(info.displayName)
+    pascal: info.displayName,
+    kebab: pascalToKebab(info.displayName)
   }))
     .sort((a, b) => a.pascal.localeCompare(b.pascal))
   files.push({

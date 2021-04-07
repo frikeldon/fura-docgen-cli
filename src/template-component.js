@@ -1,4 +1,3 @@
-const { kebabToPascal } = require('./case.js')
 const templateProps = require('./template-props.js')
 const templateMethods = require('./template-methods.js')
 const templateEvents = require('./template-events.js')
@@ -11,7 +10,7 @@ module.exports = function templateComponent (files, component, { outComponents }
     ...(info.docsBlocks ? templateDocsBlocs(files, info.docsBlocks, { outComponents, basename }) : []),
     '<template>',
     '<div class="fura">',
-    `<h1>${kebabToPascal(info.displayName)}</h1>`,
+    `<h1>${info.displayName}</h1>`,
     '<div class="docs">',
     ...(info.props ? templateProps(info.props) : []),
     ...(info.methods ? templateMethods(info.methods) : []),
