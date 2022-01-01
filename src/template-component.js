@@ -28,6 +28,7 @@ module.exports = function templateComponent (files, component, { outComponents }
     ':code="example"',
     ':layout="$options.CustomLayout"',
     ':editor-props="{ lineNumbers: true }"',
+    ':requires="$options.requires"',
     '@error="handleError"',
     '/>',
     '</div>',

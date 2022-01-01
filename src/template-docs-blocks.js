@@ -8,6 +8,7 @@ module.exports = function templateDocsBlocs (files, docsBlocks, { outComponents,
   })
   return [
     '<script>',
+    "import furaVue from 'fura-vue'",
     "import CustomLayout from '../custom-layout.vue'",
     `import examples from './${basenameExample}'`,
     '',
@@ -18,7 +19,8 @@ module.exports = function templateDocsBlocs (files, docsBlocks, { outComponents,
     '}',
     '},',
     'CustomLayout,',
-    'examples',
+    'examples,',
+    "requires: { 'fura-vue': furaVue }",
     '}',
     '</script>'
   ]
