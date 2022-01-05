@@ -5,9 +5,10 @@ const templateSlots = require('./template-slots.js')
 const templateDocsBlocs = require('./template-docs-blocks.js')
 
 module.exports = function templateComponent (files, component, { outComponents }) {
-  const { info, basename } = component
+  const { info, basename, examples } = component
+  const exampleBlocks = (info.docsBlocks || []).concat(examples || [])
   return [
-    ...(info.docsBlocks ? templateDocsBlocs(files, info.docsBlocks, { outComponents, basename }) : []),
+    ...(exampleBlocks.length > 0 ? templateDocsBlocs(files, exampleBlocks, { outComponents, basename }) : []),
     '<template>',
     '<div class="fura">',
     `<h1>${info.displayName}</h1>`,

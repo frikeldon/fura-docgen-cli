@@ -5,6 +5,20 @@ const { parse } = require('vue-docgen-api')
 const { pascalToKebab } = require('./case.js')
 const templateComponent = require('./template-component.js')
 
+async function readExamples (componentPath) {
+  const componentFolder = path.dirname(componentPath)
+  const exampleFolder = path.join(componentFolder, 'example')
+  try {
+    const fileNames = await fs.readdir(exampleFolder)
+    return await Promise.all(fileNames.map(fileName =>
+      fs.readFile(path.join(exampleFolder, fileName))
+        .then(content => content.toString())
+    ))
+  } catch {
+    return null
+  }
+}
+
 async function readComponents ({ globComponents, cwd }) {
   const componentPaths = await fg(globComponents, { cwd })
   const components = []
@@ -12,10 +26,13 @@ async function readComponents ({ globComponents, cwd }) {
     const basename = path.basename(componentPath)
     const fullComponentPath = path.join(cwd, componentPath)
     const componentInfo = await parse(fullComponentPath)
+    const examples = await readExamples(fullComponentPath)
+
     components.push({
       basename,
       path: componentPath,
-      info: componentInfo
+      info: componentInfo,
+      examples
     })
   }
   return components
