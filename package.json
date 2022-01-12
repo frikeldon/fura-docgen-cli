@@ -1,6 +1,10 @@
 {
   "name": "fura-docgen-cli",
   "main": "src/docgen.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paudr/fura-docgen-cli.git"
+  },
   "bin": {
     "fura-docgen": "bin/fura-docgen.js"
   },
